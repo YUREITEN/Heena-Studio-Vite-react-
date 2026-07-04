@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-import { ArrowRight, ChevronLeft, ChevronRight, Palette } from "lucide-react";
+import { ArrowRight, Palette } from "lucide-react";
 import { SiteLayout } from "@/components/layout/SiteLayout";
 // import { ReviewCard } from "@/components/reviews/ReviewCard";
 // import { ReviewForm } from "@/components/reviews/ReviewForm";
@@ -23,6 +23,7 @@ import expert from "@/assets/icons/expert.png";
 import artcourses from "@/assets/icons/2.png";
 import tools from "@/assets/icons/tools.png";
 import palette from "@/assets/icons/paint-palette.png";
+// removed unused import 'h2' from framer-motion/client
 
 /*
 export const Route = createFileRoute("/")({
