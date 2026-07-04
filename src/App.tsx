@@ -6,6 +6,8 @@ import Contact from "./routes/contact";
 import FabricPainting from "./routes/fabric-painting";
 import Gallery from "./routes/gallery";
 import Paintings from "./routes/paintings";
+import AdminReviews from "./routes/admin-reviews";
+import { ToastHost } from "./components/ToastHost";
 
 export default function App() {
   return (
@@ -18,8 +20,10 @@ export default function App() {
         <Route path="/fabric-painting" element={<FabricPainting />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/paintings" element={<Paintings />} />
+        <Route path="/admin/reviews" element={<AdminReviews />} />
         <Route path="*" element={<HomePage />} />
       </Routes>
+      <ToastHost />
     </BrowserRouter>
   );
 }

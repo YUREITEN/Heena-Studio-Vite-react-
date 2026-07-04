@@ -1,9 +1,8 @@
-import heroStudio from "@/assets/hero-studio.jpg";
 import fabricJeans from "@/assets/fabric-jeans.jpg";
 import fabricCurtains from "@/assets/fabric-curtains.jpg";
 import fabricCushions from "@/assets/fabric-cushions.jpg";
 import paintingMandala from "@/assets/painting-mandala.jpg";
-import paintingCharcoal from "@/assets/painting-charcoal.jpg";
+import paintingCharcoal from "@/assets/new/ch2.jpeg";
 import paintingWatercolor from "@/assets/painting-watercolor.jpg";
 import paintingResin from "@/assets/painting-resin.jpg";
 import saree from "@/assets/fabric-saree.jpg";
@@ -11,6 +10,38 @@ import bedsheet from "@/assets/fabric-bedsheet.jpg";
 import hancky from "@/assets/fabric-hancky.jpg";
 import mandala1 from "@/assets/mandala-1.jpg";
 import graphite from "@/assets/graphite.jpg";
+import ch1 from "@/assets/new/ch1.jpeg";
+import ch3 from "@/assets/new/ch3.jpeg";
+import o1 from "@/assets/new/o1.jpeg";
+import o2 from "@/assets/new/o2.jpeg";
+import o3 from "@/assets/new/o3.jpeg";
+import o4 from "@/assets/new/o4.jpeg";
+import o5 from "@/assets/new/o5.jpeg";
+import o7 from "@/assets/new/o7.jpeg";
+
+import r1 from "@/assets/new/r1.jpeg";
+import r2 from "@/assets/new/r2.jpeg";
+import r3 from "@/assets/new/r3.jpeg";
+import r4 from "@/assets/new/r4.jpeg";
+import r5 from "@/assets/new/r5.jpeg";
+import r6 from "@/assets/new/r6.jpeg";
+import r7 from "@/assets/new/r7.jpeg";
+import r8 from "@/assets/new/r8.jpeg";
+import r9 from "@/assets/new/r9.jpeg";
+import r10 from "@/assets/new/r10.jpeg";
+import r11 from "@/assets/new/r11.jpeg";
+import r12 from "@/assets/new/r12.jpeg";
+import r13 from "@/assets/new/r13.jpeg";
+import r14 from "@/assets/new/r14.jpeg";
+import r15 from "@/assets/new/r15.jpeg";
+import r16 from "@/assets/new/r16.jpeg";
+import w1 from "@/assets/new/waterpaint 1.jpeg";
+import w2 from "@/assets/new/w2.jpeg";
+
+import fp1 from "@/assets/new/fp1.jpeg";
+import fp2 from "@/assets/new/fp2.jpeg";
+import fp3 from "@/assets/new/fp3.jpeg";
+
 
 export type SampleArtwork = {
   id: string;
@@ -38,14 +69,14 @@ export const SAMPLE_ARTWORKS: SampleArtwork[] = [
     image: fabricCurtains,
     description: "fine linings on denim.",
   },
-  {
-    id: "s3",
-    title: "Lotus Tales on Shirts",
-    category: "Fabric Painting",
-    subcategory: "Shirts",
-    image: fabricCushions,
-    description: "Lotus Tales On Fabric.",
-  },
+  // {
+  //   id: "s3",
+  //   title: "Lotus Tales on Shirts",
+  //   category: "Fabric Painting",
+  //   subcategory: "Shirts",
+  //   image: fabricCushions,
+  //   description: "Lotus Tales On Fabric.",
+  // },
   {
     id: "s4",
     title: "Lotus Bloom Heritage Saree",
@@ -78,6 +109,126 @@ export const SAMPLE_ARTWORKS: SampleArtwork[] = [
     image: fabricCushions,
     description: "Cushion designs.",
   },
+  {
+    id: "fabric-placeholder-01",
+   title: "Painted  Shirt",
+    category: "Fabric Painting",
+    subcategory: "Shirts",
+    image: fp1,
+    description: "Hand-painted bird on cotton.",
+  },
+  {
+    id: "fabric-placeholder-02",
+    title: "Painted  Shirt",
+    category: "Fabric Painting",
+    subcategory: "Shirts",
+    image: fp2,
+    description: "Hand-painted bird on cotton.",
+  },
+  {
+    id: "fabric-placeholder-03",
+    title: "Painted  Shirt",
+    category: "Fabric Painting",
+    subcategory: "Shirts",
+    image: fp3,
+    description: "Hand-painted bird on cotton.",
+  },
+  // {
+  //   id: "fabric-placeholder-04",
+  //   title: "Fabric Painting 04",
+  //   category: "Fabric Painting",
+  //   subcategory: "Bedsheets",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-05",
+  //   title: "Fabric Painting 05",
+  //   category: "Fabric Painting",
+  //   subcategory: "Cushion Covers",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-06",
+  //   title: "Fabric Painting 06",
+  //   category: "Fabric Painting",
+  //   subcategory: "Handkerchiefs",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-07",
+  //   title: "Fabric Painting 07",
+  //   category: "Fabric Painting",
+  //   subcategory: "Jeans",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-08",
+  //   title: "Fabric Painting 08",
+  //   category: "Fabric Painting",
+  //   subcategory: "Shirts",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-09",
+  //   title: "Fabric Painting 09",
+  //   category: "Fabric Painting",
+  //   subcategory: "Curtains",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-10",
+  //   title: "Fabric Painting 10",
+  //   category: "Fabric Painting",
+  //   subcategory: "Bedsheets",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-11",
+  //   title: "Fabric Painting 11",
+  //   category: "Fabric Painting",
+  //   subcategory: "Cushion Covers",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-12",
+  //   title: "Fabric Painting 12",
+  //   category: "Fabric Painting",
+  //   subcategory: "Handkerchiefs",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-13",
+  //   title: "Fabric Painting 13",
+  //   category: "Fabric Painting",
+  //   subcategory: "Jeans",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-14",
+  //   title: "Fabric Painting 14",
+  //   category: "Fabric Painting",
+  //   subcategory: "Shirts",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
+  // {
+  //   id: "fabric-placeholder-15",
+  //   title: "Fabric Painting 15",
+  //   category: "Fabric Painting",
+  //   subcategory: "Curtains",
+  //   image: fabricJeans,
+  //   description: "New fabric artwork placeholder.",
+  // },
 
   {
     id: "s8",
@@ -131,11 +282,248 @@ export const SAMPLE_ARTWORKS: SampleArtwork[] = [
   },
   {
     id: "s14",
-    title: "Studio Workspace",
-    category: "Studio",
-    image: heroStudio,
-    description: "Where the magic happens.",
+    title: "Portrait in Charcoal",
+    category: "Paintings",
+    subcategory: "Charcoal",
+    image: ch1,
+    description: "charcoal portrait study.",
   },
+  {
+   id: "s15",
+    title: "Portrait in Charcoal",
+    category: "Paintings",
+    subcategory: "Charcoal",
+    image: ch3,
+    description: "charcoal portrait study.",
+  },
+  {
+    id: "s16",
+    title: "Mirror Holder",
+    category: "Paintings",
+    subcategory: "Acrylic",
+    image: o1,
+    description: "Mirror holder with acrylic art.",
+  },
+  {
+    id: "s17",
+    title: "Mirror Holder",
+    category: "Paintings",
+    subcategory: "Acrylic",
+    image: o2,
+    description: "Mirror holder with acrylic art.",
+  },
+  {
+    id: "s18",
+    title: "Life Casting art",
+    category: "Paintings",
+    subcategory: "Acrylic",
+    image: o3,
+    description: "Life casting art ",
+  },
+  {
+    id: "s19",
+    title: "Life Casting art",
+    category: "Paintings",
+    subcategory: "Acrylic",
+    image: o4,
+    description: "Life casting art ",
+  },
+  {
+     id: "s20",
+    title: "Life Casting art",
+    category: "Paintings",
+    subcategory: "Acrylic",
+    image: o5,
+    description: "Life casting art ",
+  },
+  {
+         id: "s21",
+    title: "Suitcase Designing ",
+    category: "Paintings",
+    subcategory: "Acrylic",
+    image: o7,
+    description: "Suitcase design to make it look different  ",
+  },
+  {
+    id: "s22",
+    title: "Resin Table Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r1,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s23",
+    title: "Resin Table Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r2,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s24",
+    title: "Resin Coaster Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r3,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s25",
+    title: "Resin Frame Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r4,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s26",
+    title: "Resin Ashtray Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r5,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s27",
+    title: "Resin Frame Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r6,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s28",
+    title: "Resin Gift Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r7,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s29",
+    title: "Resin Nameplate Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r8,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s30",
+    title: "Resin Nameplate Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r9,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s31",
+    title: "Resin Nameplate Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r10,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s32",
+    title: "Resin Nameplate Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r11,
+    description: "resin art on table giving it a new design",
+  },
+{
+    id: "s33",
+    title: "Resin Nameplate Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r12,
+    description: "resin art on table giving it a new design",
+  },
+  {
+    id: "s34",
+    title: "Resin Keychain Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r13,
+    description: "resin art on table giving it a new design",
+  },
+  
+  {
+    
+    id: "s35",
+    title: "Resin Keychain Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r14,
+    description: "resin art on table giving it a new design",
+  },
+ {
+    
+    id: "s36",
+    title: "Resin Keychain Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r15,
+    description: "resin art on table giving it a new design",
+  },
+ {
+    
+    id: "s37",
+    title: "Resin Keychain Design",
+    category: "Paintings",
+    subcategory: "Resin Art",
+    image: r16,
+    description: "resin art on table giving it a new design",
+  },
+
+  {
+    id: "s38",
+    title: "Painting 11",
+    category: "Paintings",
+    subcategory: "Watercolor",
+    image: w1,
+    description: "New painting placeholder.",
+  },
+  {
+    id: "s39",
+    title: "Painting 12",
+    category: "Paintings",
+    subcategory: "Watercolor",
+    image: w2,
+    description: "New painting placeholder.",
+  },
+  // {
+  //   id: "painting-placeholder-13",
+  //   title: "Painting 13",
+  //   category: "Paintings",
+  //   subcategory: "Mandala",
+  //   image: paintingResin,
+  //   description: "New painting placeholder.",
+  // },
+  // {
+  //   id: "painting-placeholder-14",
+  //   title: "Painting 14",
+  //   category: "Paintings",
+  //   subcategory: "Resin Art",
+  //   image: paintingResin,
+  //   description: "New painting placeholder.",
+  // },
+  // {
+  //   id: "painting-placeholder-15",
+  //   title: "Painting 15",
+  //   category: "Paintings",
+  //   subcategory: "Charcoal",
+  //   image: paintingResin,
+  //   description: "New painting placeholder.",
+  // },
+  // {
+  //   id: "s14",
+  //   title: "Studio Workspace",
+  //   category: "Studio",
+  //   image: heroStudio,
+  //   description: "Where the magic happens.",
+  // },
 ];
 
 export const SAMPLE_TESTIMONIALS = [

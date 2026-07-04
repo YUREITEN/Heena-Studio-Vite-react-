@@ -25,6 +25,7 @@ export const Route = createFileRoute("/paintings")({
 
 export default function Paintings() {
   const [active, setActive] = useState<string>("All");
+  const driveUrl = import.meta.env.VITE_GALLERY_DRIVE_URL || "https://drive.google.com/";
 
   const items: GalleryItem[] = useMemo(() => {
     const fallback = SAMPLE_ARTWORKS.filter((a) => a.category === "Paintings").map((a) => ({
@@ -64,6 +65,17 @@ export default function Paintings() {
         </div>
         <div className="mt-10">
           <GalleryGrid items={items} />
+        </div>
+
+        <div className="mt-14 flex justify-center">
+          <a
+            href={driveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-gold bg-white px-8 py-3 text-sm font-semibold text-navy shadow-soft transition-all hover:bg-gold/10 hover:shadow-lift"
+          >
+            Load More
+          </a>
         </div>
       </section>
     </SiteLayout>

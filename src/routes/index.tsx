@@ -1,14 +1,19 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 import {
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
   Palette,
-  Star,
 } from "lucide-react";
 import { SiteLayout } from "@/components/layout/SiteLayout";
-import { SAMPLE_ARTWORKS, SAMPLE_TESTIMONIALS } from "@/data/sample";
+import { ReviewCard } from "@/components/reviews/ReviewCard";
+import { ReviewForm } from "@/components/reviews/ReviewForm";
+import { ReviewService } from "@/lib/reviewService";
+import type { Review } from "@/types/review";
+import { SAMPLE_ARTWORKS } from "@/data/sample";
 import fabricJeans from "@/assets/fabric-jeans.jpg";
 import resinart from "@/assets/painting-resin.jpg";
 import fabricCurtains from "@/assets/fabric-curtains.jpg";
@@ -19,7 +24,6 @@ import artist from "@/assets/artist-portrait.jpg";
 import saree from "@/assets/fabric-saree.jpg";
 import arrowImg from "@/assets/arrow.png";
 
-import commissionImg from "@/assets/commission-process.jpeg";
 import expert from "@/assets/icons/expert.png";
 import artcourses from "@/assets/icons/2.png";
 import tools from "@/assets/icons/tools.png";
@@ -76,10 +80,34 @@ const SLIDES = [
 
 export default function Home() {
   const [slide, setSlide] = useState(0);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviewsLoading, setReviewsLoading] = useState(true);
+  const reviewTrackRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const t = setInterval(() => setSlide((s) => (s + 1) % SLIDES.length), 5000);
     return () => clearInterval(t);
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    ReviewService.getApprovedReviews()
+      .then((approvedReviews) => {
+        if (!cancelled) setReviews(approvedReviews);
+      })
+      .catch((error: unknown) => {
+        console.warn("Could not load approved reviews:", error);
+      })
+      .finally(() => {
+        if (!cancelled) setReviewsLoading(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -98,6 +126,13 @@ export default function Home() {
 
     return () => clearInterval(interval);
   }, []);
+
+  function scrollReviews(direction: "previous" | "next") {
+    reviewTrackRef.current?.scrollBy({
+      left: direction === "next" ? 360 : -360,
+      behavior: "smooth",
+    });
+  }
 
   return (
     <SiteLayout>
@@ -440,7 +475,7 @@ export default function Home() {
             </div>
 
             {/* Right Side */}
-            <div className="relative flex justify-center">
+            {/* <div className="relative flex justify-center">
               <div
                 className="absolute inset-0 m-auto h-[450px] w-[450px] bg-[#F8EDE8]"
                 style={{
@@ -456,7 +491,7 @@ export default function Home() {
                   borderRadius: "80% 60% 70% 70% / 30% 20% 40% 20%",
                 }}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -507,7 +542,7 @@ export default function Home() {
       {/* WHY CHOOSE US SECTION */}
       {/* WHY CHOOSE heena */}
 
-      <section className="relative overflow-hidden bg-[#F2ECE4] py-24">
+      <section className="relative overflow-hidden bg-[#F2ECE4] py-16 md:py-20 lg:py-24">
         {/* Background Pattern */}
         <div
           className="absolute inset-0 opacity-50"
@@ -521,29 +556,41 @@ export default function Home() {
         />
 
         <div className="relative z-10 mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="grid items-center gap-16 lg:grid-cols-2">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
             {/* LEFT IMAGES */}
 
-            <div className="relative flex justify-center">
+            <div className="relative mx-auto flex min-h-[410px] w-full max-w-sm justify-center sm:min-h-[470px] sm:max-w-md lg:min-h-[700px] lg:max-w-none">
               {/* Student Card */}
 
               <div
                 className="
           absolute
-          left-[-160px]
-          top-9
+          left-2
+          top-3
           z-20
-          rounded-[28px]
+          rounded-[22px]
           bg-[#6B4423]
-          px-10
-          py-8
+          px-5
+          py-4
           text-center
           shadow-xl
+          sm:left-4
+          sm:px-7
+          sm:py-5
+          lg:left-[-160px]
+          lg:top-9
+          lg:rounded-[28px]
+          lg:px-10
+          lg:py-8
           "
               >
-                <h3 className="font-heading text-6xl text-white"> {count}+</h3>
+                <h3 className="font-heading text-4xl text-white sm:text-5xl lg:text-6xl">
+                  {count}+
+                </h3>
 
-                <p className="mt-2 text-lg text-[#D4A574]">Happy Students</p>
+                <p className="mt-1 text-sm text-[#D4A574] sm:text-base lg:mt-2 lg:text-lg">
+                  Happy Students
+                </p>
               </div>
 
               {/* Main Image */}
@@ -552,13 +599,19 @@ export default function Home() {
                 src={fabricCurtains}
                 alt="Fabric Curtains"
                 className="
-    h-[650px]
-    w-[420px]
+    h-[360px]
+    w-[78%]
+    max-w-[280px]
     rounded-[30px]
     border-4
     border-white
     object-cover
     shadow-xl
+    sm:h-[430px]
+    sm:max-w-[330px]
+    lg:h-[650px]
+    lg:w-[420px]
+    lg:max-w-none
   "
                 initial={{
                   opacity: 0,
@@ -582,15 +635,22 @@ export default function Home() {
                 alt="Resin Art"
                 className="
     absolute
-    bottom-0
-    left-[-60px]
-    h-[320px]
-    w-[320px]
-    rounded-[30px]
+    bottom-4
+    left-3
+    h-36
+    w-36
+    rounded-[24px]
     border-4
     border-white
     object-cover
     shadow-xl
+    sm:h-44
+    sm:w-44
+    lg:bottom-0
+    lg:left-[-60px]
+    lg:h-[320px]
+    lg:w-[320px]
+    lg:rounded-[30px]
   "
                 initial={{
                   opacity: 0,
@@ -611,7 +671,7 @@ export default function Home() {
 
             {/* RIGHT CONTENT */}
 
-            <div>
+            <div className="text-center lg:text-left">
               <p className="font-medium tracking-[3px] text-[#D4A574] uppercase">Why Choose Us</p>
 
               <motion.h2
@@ -675,7 +735,7 @@ export default function Home() {
               </motion.h2>
 
               <motion.p
-                className="mt-6 text-lg leading-relaxed text-muted-foreground"
+                className="mt-6 text-base leading-relaxed text-muted-foreground md:text-lg"
                 initial={{
                   opacity: 0,
                   filter: "blur(10px)",
@@ -692,7 +752,7 @@ export default function Home() {
                   delay: 0.4,
                 }}
               >
-                At heena, we provide a creative environment where students can explore different art
+                At heena studio, we provide a creative environment where students can explore different art
                 forms, learn professional techniques, and express their imagination.
               </motion.p>
               {/* Feature 1 */}
@@ -714,7 +774,7 @@ export default function Home() {
                 }}
               >
                 <div className="mt-10 border-b border-[#D4A574]/130 pb-6">
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 text-left">
                     <img src={expert} alt="" className="h-14 w-14 object-contain" />
 
                     <div>
@@ -731,7 +791,7 @@ export default function Home() {
                 {/* Feature 2 */}
 
                 <div className="border-b border-[#bca58a]/130 py-6">
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 text-left">
                     <img src={artcourses} alt="" className="h-14 w-14 object-contain" />
 
                     <div>
@@ -747,7 +807,7 @@ export default function Home() {
                 {/* Feature 3 */}
 
                 <div className="border-b border-[#D4A574]/130 py-6">
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 text-left">
                     <img src={tools} alt="" className="h-14 w-14 object-contain" />
 
                     <div>
@@ -763,7 +823,7 @@ export default function Home() {
                 {/* Feature 4 */}
 
                 <div className="py-6">
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 text-left">
                     <img src={palette} alt="" className="h-14 w-14 object-contain" />
 
                     <div>
@@ -834,27 +894,66 @@ export default function Home() {
             From our students & collectors.
           </h2>
         </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {SAMPLE_TESTIMONIALS.map((t) => (
-            <figure key={t.id} className="hover-lift rounded-2xl bg-white p-7 shadow-soft">
-              <div className="flex gap-1 text-gold">
-                {Array.from({ length: t.rating }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-current" />
+        <div className="mt-10">
+          {reviewsLoading ? (
+            <div className="grid gap-5 md:grid-cols-3">
+              {Array.from({ length: 3 }).map((_, index) => (
+                <div key={index} className="rounded-2xl bg-white p-7 shadow-soft">
+                  <div className="h-4 w-24 rounded-full bg-accent" />
+                  <div className="mt-5 h-4 rounded-full bg-accent" />
+                  <div className="mt-3 h-4 w-3/4 rounded-full bg-accent" />
+                  <div className="mt-6 h-10 w-36 rounded-full bg-accent" />
+                </div>
+              ))}
+            </div>
+          ) : reviews.length > 3 ? (
+            <div className="relative">
+              <div className="mb-4 flex justify-between">
+                <button
+                  type="button"
+                  onClick={() => scrollReviews("previous")}
+                  aria-label="Previous reviews"
+                  className="grid h-10 w-10 place-items-center rounded-full border border-gold bg-white text-navy shadow-soft transition-all hover:bg-gold/10"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollReviews("next")}
+                  aria-label="Next reviews"
+                  className="grid h-10 w-10 place-items-center rounded-full border border-gold bg-white text-navy shadow-soft transition-all hover:bg-gold/10"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div
+                ref={reviewTrackRef}
+                className="flex snap-x gap-5 overflow-x-auto scroll-smooth pb-3"
+              >
+                {reviews.map((review) => (
+                  <div
+                    key={review.id}
+                    className="min-w-[85%] snap-start sm:min-w-[48%] lg:min-w-[31.5%]"
+                  >
+                    <ReviewCard review={review} />
+                  </div>
                 ))}
               </div>
-              <blockquote className="mt-4 text-navy/85">"{t.message}"</blockquote>
-              <figcaption className="mt-4 flex items-center gap-3">
-                <div className="grid h-10 w-10 place-items-center rounded-full bg-purple/15 text-purple font-semibold">
-                  {t.name.charAt(0)}
-                </div>
-                <div>
-                  <p className="font-semibold text-navy">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.role}</p>
-                </div>
-              </figcaption>
-            </figure>
-          ))}
+            </div>
+          ) : reviews.length > 0 ? (
+            <div className="grid gap-5 md:grid-cols-3">
+              {reviews.map((review) => (
+                <ReviewCard key={review.id} review={review} />
+              ))}
+            </div>
+          ) : (
+            <p className="rounded-2xl bg-white p-7 text-muted-foreground shadow-soft md:col-span-3">
+              Approved reviews will appear here soon.
+            </p>
+          )}
         </div>
+        <ReviewForm />
       </section>
 
       {/* CTA */}

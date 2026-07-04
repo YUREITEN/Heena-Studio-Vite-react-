@@ -1,0 +1,50 @@
+[
+  {
+    "id": "05988484-bb46-40dd-a5f2-36edd7bf4e00",
+    "name": "Amayra",
+    "rating": 5,
+    "review": "I am really  impressed by the quality and the skills .\nThanks a lot heena for your amazing services .",
+    "status": "approved",
+    "createdAt": "2026-07-04T08:19:47.008Z"
+  },
+  {
+    "id": "a98a5fa1-a857-44a9-a863-9da8ebf9377e",
+    "name": "gouri",
+    "rating": 2,
+    "review": "i m impressed",
+    "status": "rejected",
+    "createdAt": "2026-07-04T06:07:06.053Z"
+  },
+  {
+    "id": "7553dfff-7ac4-4ea3-9454-3a3bfaf68d2a",
+    "name": "gg",
+    "rating": 5,
+    "review": "scdfgcfg",
+    "status": "rejected",
+    "createdAt": "2026-07-03T16:58:19.202Z"
+  },
+  {
+    "id": "seed-anjali-verma",
+    "name": "Anjali Verma",
+    "rating": 5,
+    "review": "My daughter looks forward to every Saturday at heena. She's blossoming.",
+    "status": "approved",
+    "createdAt": "2026-01-25T10:00:00.000Z"
+  },
+  {
+    "id": "seed-rahul-mehta",
+    "name": "Rahul Mehta",
+    "rating": 5,
+    "review": "The hand-painted jeans she made for my wife are stunning. A true heirloom piece.",
+    "status": "approved",
+    "createdAt": "2026-01-18T10:00:00.000Z"
+  },
+  {
+    "id": "seed-priya-sharma",
+    "name": "Priya Sharma",
+    "rating": 5,
+    "review": "Heena's class transformed how I see art. Her warmth and patience are unmatched.",
+    "status": "approved",
+    "createdAt": "2026-01-12T10:00:00.000Z"
+  }
+]
