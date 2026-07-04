@@ -2,17 +2,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Palette,
-} from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Palette } from "lucide-react";
 import { SiteLayout } from "@/components/layout/SiteLayout";
-import { ReviewCard } from "@/components/reviews/ReviewCard";
-import { ReviewForm } from "@/components/reviews/ReviewForm";
-import { ReviewService } from "@/lib/reviewService";
-import type { Review } from "@/types/review";
+// import { ReviewCard } from "@/components/reviews/ReviewCard";
+// import { ReviewForm } from "@/components/reviews/ReviewForm";
+// import { ReviewService } from "@/lib/reviewService";
+// import type { Review } from "@/types/review";
 import { SAMPLE_ARTWORKS } from "@/data/sample";
 import fabricJeans from "@/assets/fabric-jeans.jpg";
 import resinart from "@/assets/painting-resin.jpg";
@@ -80,33 +75,34 @@ const SLIDES = [
 
 export default function Home() {
   const [slide, setSlide] = useState(0);
-  const [reviews, setReviews] = useState<Review[]>([]);
-  const [reviewsLoading, setReviewsLoading] = useState(true);
-  const reviewTrackRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const t = setInterval(() => setSlide((s) => (s + 1) % SLIDES.length), 5000);
-    return () => clearInterval(t);
-  }, []);
+  // const [reviews, setReviews] = useState<Review[]>([]);
+  // const [reviewsLoading, setReviewsLoading] = useState(true);
+  // const reviewTrackRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    let cancelled = false;
+  // useEffect(() => {
+  //   const t = setInterval(() => setSlide((s) => (s + 1) % SLIDES.length), 5000);
+  //   return () => clearInterval(t);
+  // }, []);
 
-    ReviewService.getApprovedReviews()
-      .then((approvedReviews) => {
-        if (!cancelled) setReviews(approvedReviews);
-      })
-      .catch((error: unknown) => {
-        console.warn("Could not load approved reviews:", error);
-      })
-      .finally(() => {
-        if (!cancelled) setReviewsLoading(false);
-      });
+  // useEffect(() => {
+  //   let cancelled = false;
 
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  //   ReviewService.getApprovedReviews()
+  //     .then((approvedReviews) => {
+  //       if (!cancelled) setReviews(approvedReviews);
+  //     })
+  //     .catch((error: unknown) => {
+  //       console.warn("Could not load approved reviews:", error);
+  //     })
+  //     .finally(() => {
+  //       if (!cancelled) setReviewsLoading(false);
+  //     });
+
+  //   return () => {
+  //     cancelled = true;
+  //   };
+  // }, []);
 
   const [count, setCount] = useState(0);
 
@@ -127,12 +123,12 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  function scrollReviews(direction: "previous" | "next") {
-    reviewTrackRef.current?.scrollBy({
-      left: direction === "next" ? 360 : -360,
-      behavior: "smooth",
-    });
-  }
+  // function scrollReviews(direction: "previous" | "next") {
+  //   reviewTrackRef.current?.scrollBy({
+  //     left: direction === "next" ? 360 : -360,
+  //     behavior: "smooth",
+  //   });
+  // }
 
   return (
     <SiteLayout>
@@ -143,7 +139,11 @@ export default function Home() {
             key={s.src}
             className={`absolute inset-0 transition-opacity duration-1000 ${i === slide ? "opacity-100" : "opacity-0"}`}
           >
-            <img src={s.src} alt={s.title} className="h-full w-full object-cover" />
+            <img
+              src={s.src}
+              alt={s.title}
+              className="h-full w-full object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-b from-navy/30 via-navy/40 to-navy/70" />
           </div>
         ))}
@@ -236,8 +236,9 @@ export default function Home() {
               A decade of color, patience, and patterns.
             </h2>
             <p className="mt-5 text-base text-muted-foreground md:text-lg">
-              heena is a small, warm space dedicated to original artworks and the joy of teaching.
-              From mandalas to fabric painting, every piece is created — and taught — with care.
+              heena is a small, warm space dedicated to original artworks and
+              the joy of teaching. From mandalas to fabric painting, every piece
+              is created — and taught — with care.
             </p>
             <Link
               to="/about"
@@ -391,7 +392,9 @@ export default function Home() {
                   }}
                 >
                   <span className="font-semibold text-navy">1.</span>
-                  <span className="font-medium  text-[19px] text-navy">Think of a concept</span>
+                  <span className="font-medium  text-[19px] text-navy">
+                    Think of a concept
+                  </span>
                 </motion.div>
 
                 <motion.div
@@ -415,7 +418,9 @@ export default function Home() {
                   }}
                 >
                   <span className="font-semibold text-navy">2.</span>
-                  <span className="font-medium  text-[19px] text-navy">Approve the design</span>
+                  <span className="font-medium  text-[19px] text-navy">
+                    Approve the design
+                  </span>
                 </motion.div>
 
                 <motion.div
@@ -672,7 +677,9 @@ export default function Home() {
             {/* RIGHT CONTENT */}
 
             <div className="text-center lg:text-left">
-              <p className="font-medium tracking-[3px] text-[#D4A574] uppercase">Why Choose Us</p>
+              <p className="font-medium tracking-[3px] text-[#D4A574] uppercase">
+                Why Choose Us
+              </p>
 
               <motion.h2
                 className="
@@ -752,8 +759,9 @@ export default function Home() {
                   delay: 0.4,
                 }}
               >
-                At heena studio, we provide a creative environment where students can explore different art
-                forms, learn professional techniques, and express their imagination.
+                At heena studio, we provide a creative environment where
+                students can explore different art forms, learn professional
+                techniques, and express their imagination.
               </motion.p>
               {/* Feature 1 */}
               <motion.div
@@ -775,14 +783,20 @@ export default function Home() {
               >
                 <div className="mt-10 border-b border-[#D4A574]/130 pb-6">
                   <div className="flex gap-4 text-left">
-                    <img src={expert} alt="" className="h-14 w-14 object-contain" />
+                    <img
+                      src={expert}
+                      alt=""
+                      className="h-14 w-14 object-contain"
+                    />
 
                     <div>
-                      <h3 className="font-heading text-2xl text-navy">Expert Art Guidance</h3>
+                      <h3 className="font-heading text-2xl text-navy">
+                        Expert Art Guidance
+                      </h3>
 
                       <p className="mt-2 text-muted-foreground">
-                        Learn from experienced artists who guide you through every technique with
-                        patience and creativity.
+                        Learn from experienced artists who guide you through
+                        every technique with patience and creativity.
                       </p>
                     </div>
                   </div>
@@ -792,13 +806,20 @@ export default function Home() {
 
                 <div className="border-b border-[#bca58a]/130 py-6">
                   <div className="flex gap-4 text-left">
-                    <img src={artcourses} alt="" className="h-14 w-14 object-contain" />
+                    <img
+                      src={artcourses}
+                      alt=""
+                      className="h-14 w-14 object-contain"
+                    />
 
                     <div>
-                      <h3 className="font-heading text-2xl text-navy">Variety Of Art Courses</h3>
+                      <h3 className="font-heading text-2xl text-navy">
+                        Variety Of Art Courses
+                      </h3>
 
                       <p className="mt-2 text-muted-foreground">
-                        Fabric painting, mandala art, resin art, sketching and more.
+                        Fabric painting, mandala art, resin art, sketching and
+                        more.
                       </p>
                     </div>
                   </div>
@@ -808,13 +829,20 @@ export default function Home() {
 
                 <div className="border-b border-[#D4A574]/130 py-6">
                   <div className="flex gap-4 text-left">
-                    <img src={tools} alt="" className="h-14 w-14 object-contain" />
+                    <img
+                      src={tools}
+                      alt=""
+                      className="h-14 w-14 object-contain"
+                    />
 
                     <div>
-                      <h3 className="font-heading text-2xl text-navy">Hands-On Learning</h3>
+                      <h3 className="font-heading text-2xl text-navy">
+                        Hands-On Learning
+                      </h3>
 
                       <p className="mt-2 text-muted-foreground">
-                        Practice real techniques and create your own artworks from day one.
+                        Practice real techniques and create your own artworks
+                        from day one.
                       </p>
                     </div>
                   </div>
@@ -824,13 +852,20 @@ export default function Home() {
 
                 <div className="py-6">
                   <div className="flex gap-4 text-left">
-                    <img src={palette} alt="" className="h-14 w-14 object-contain" />
+                    <img
+                      src={palette}
+                      alt=""
+                      className="h-14 w-14 object-contain"
+                    />
 
                     <div>
-                      <h3 className="font-heading text-2xl text-navy">Friendly Environment</h3>
+                      <h3 className="font-heading text-2xl text-navy">
+                        Friendly Environment
+                      </h3>
 
                       <p className="mt-2 text-muted-foreground">
-                        A supportive and inspiring atmosphere for artists of all ages.
+                        A supportive and inspiring atmosphere for artists of all
+                        ages.
                       </p>
                     </div>
                   </div>
@@ -885,7 +920,7 @@ export default function Home() {
       </a>
 
       {/* Testimonials */}
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
+      {/* <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-dark">
             Testimonials
@@ -954,6 +989,53 @@ export default function Home() {
           )}
         </div>
         <ReviewForm />
+      </section> */}
+      {/* Testimonials */}
+
+      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold-dark">
+            Testimonials
+          </p>
+
+          <h2 className="mt-3 font-heading text-3xl text-navy md:text-5xl">
+            From our students & collectors.
+          </h2>
+        </div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <div className="rounded-2xl bg-white p-7 shadow-soft">
+            <div className="text-gold text-xl">★★★★★</div>
+
+            <p className="mt-5 text-muted-foreground">
+              Heena ma'am is an amazing artist and teacher. I learned so much in
+              just a few classes.
+            </p>
+
+            <h4 className="mt-6 font-semibold text-navy">Priya Sharma</h4>
+          </div>
+
+          <div className="rounded-2xl bg-white p-7 shadow-soft">
+            <div className="text-gold text-xl">★★★★★</div>
+
+            <p className="mt-5 text-muted-foreground">
+              Beautiful paintings and wonderful guidance. Highly recommended.
+            </p>
+
+            <h4 className="mt-6 font-semibold text-navy">Rahul Singh</h4>
+          </div>
+
+          <div className="rounded-2xl bg-white p-7 shadow-soft">
+            <div className="text-gold text-xl">★★★★★</div>
+
+            <p className="mt-5 text-muted-foreground">
+              Extremely professional, creative and patient. Loved every
+              workshop.
+            </p>
+
+            <h4 className="mt-6 font-semibold text-navy">Sneha Verma</h4>
+          </div>
+        </div>
       </section>
 
       {/* CTA */}
@@ -963,7 +1045,9 @@ export default function Home() {
           <h2 className="mt-4 font-heading text-3xl text-white md:text-5xl text-balance">
             Let's create something beautiful together.
           </h2>
-          <p className="mt-4 text-white/90">Custom Paintings ● Resin Art ● Rangoli</p>
+          <p className="mt-4 text-white/90">
+            Custom Paintings ● Resin Art ● Rangoli
+          </p>
           <p className="mt-2 text-grey/90">Hand Painted Works</p>
           <Link
             to="/contact"
