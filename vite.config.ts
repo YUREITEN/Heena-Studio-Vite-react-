@@ -11,15 +11,13 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 import { reviewApiPlugin } from "./server/reviewApi";
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 export default defineConfig(({ mode }) => {
   const env = { ...process.env, ...loadEnv(mode, process.cwd(), "") };
 
   return {
-    plugins: [
-      react(),
-      tailwindcss(),
-      reviewApiPlugin(env),
-    ],
+    plugins: [react(), tailwindcss(), reviewApiPlugin(env), cloudflare()],
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
